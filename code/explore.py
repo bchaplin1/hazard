@@ -20,6 +20,8 @@ train.iloc[1,1]
 type(train.iloc[:,2])
 train.iloc[:,2].value_counts().size
 
+train.columns
+
 types = []
 for i in range(train.shape[1]):
     types.append(type(train.iloc[1,i]))
@@ -42,6 +44,7 @@ data.sort('Hazard').head(5)[cols1]
 data.sort('Hazard').tail(5)[cols1]
 
 
+
 types
     print type(train.iloc[1,i])
 
@@ -49,9 +52,13 @@ types
 # do we have any missing values?
 train.isnull().sum()  # no missing values
 
+
 # data types
 
 train.T1_V15.describe()
+
+train.T2_V1.describe()
+
 train.T1_V15.value_counts() # so we have a lot of categorical variables
 
 # what does the response look like?
@@ -60,7 +67,11 @@ train.Hazard.hist() # very left-skewed, a lot have no hazard or hazard = 1
 train.Hazard.value_counts()
 
 
-train.corr()
+corr = train.corr()
+corrDf = pd.DataFrame(corr)
+
+corrDf.to_clipboard()
+
 import seaborn as sns
 # display correlation matrix in Seaborn using a heatmap
 sns.heatmap(train.corr()) 
